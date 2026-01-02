@@ -26,5 +26,9 @@ public class AppUser {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(name = "profile_image_url")
+    private String profileImageUrl;
+
+
     private boolean enabled = true;
 }

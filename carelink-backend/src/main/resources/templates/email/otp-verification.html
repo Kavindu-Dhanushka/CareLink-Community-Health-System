@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 520px;
+            width: 100%;
+            background: #ffffff;
+            padding: 48px 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #3b82f6, #2563eb, #1d4ed8);
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+        }
+
+        .icon-wrapper::after {
+            content: '✉';
+            font-size: 36px;
+            color: #2563eb;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #1e293b;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .otp-wrapper {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 32px 24px;
+            border-radius: 16px;
+            margin: 32px 0;
+            border: 2px solid #bfdbfe;
+            position: relative;
+        }
+
+        .otp-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .otp {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 12px;
+            margin: 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .note {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #3b82f6;
+            margin: 24px 0;
+        }
+
+        .note p {
+            color: #475569;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .note strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .warning {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            color: #ef4444;
+            font-size: 13px;
+        }
+
+        .warning::before {
+            content: '⚠';
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .footer a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container > * {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .otp-wrapper {
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">CareLink</div>
+
+    <div class="icon-wrapper"></div>
+
+    <h2>Verify Your Email</h2>
+
+    <p>Hello! We're excited to have you join CareLink.</p>
+
+    <p>Please use the following One-Time Password to verify your email address:</p>
+
+    <div class="otp-wrapper">
+        <div class="otp-label">Your OTP Code</div>
+        <div class="otp" th:text="${otp}">123456</div>
+    </div>
+
+    <div class="note">
+        <p>
+            This code expires in <strong>5 minutes</strong>.
+        </p>
+        <div class="warning">
+            Never share this code with anyone
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>If you didn't request this code, please ignore this email.</p>
+        <p>© 2026 CareLink. All rights reserved.</p>
+    </div>
+</div>
+
+</body>
+</html>
