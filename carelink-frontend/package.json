@@ -16,12 +16,9 @@
     "dom": "^0.0.3",
     "dotenv": "^17.2.3",
     "framer-motion": "^12.23.26",
-<<<<<<< HEAD
     "react": "^19.2.3",
-=======
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
->>>>>>> a5fe764a463426544f333305d5f88645eda32c1a
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.11.0",
     "router": "^2.2.0",
