@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
     return (
@@ -17,10 +18,10 @@ export default function Navbar() {
 
                 {/* Navigation Links */}
                 <ul className="hidden md:flex items-center gap-8 text-gray-600 font-medium">
-                    <li className="hover:text-blue-600 cursor-pointer">Home</li>
-                    <li className="hover:text-blue-600 cursor-pointer">Services</li>
-                    <li className="hover:text-blue-600 cursor-pointer">Health Tips</li>
-                    <li className="hover:text-blue-600 cursor-pointer">About</li>
+                    <li><Link to="/" className="hover:text-blue-600">Home</Link></li>
+                    <li><Link to="/services" className="hover:text-blue-600">Services</Link></li>
+                    <li><Link to="/health-tips" className="hover:text-blue-600">Health Tips</Link></li>
+                    <li><Link to="/about" className="hover:text-blue-600">About</Link></li>
                 </ul>
 
                 {/* Buttons */}

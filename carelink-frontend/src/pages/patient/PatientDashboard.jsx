@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // <--- 1. Import Link
 import {
   CalendarDays,
   Plus,
@@ -10,7 +11,7 @@ export default function PatientDashboard() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    // 🔹 Mock backend response (replace with real API)
+    // 🔹 Mock backend response
     setData({
       user: { name: "Nirmal" },
       date: "Wednesday, Oct 24",
@@ -26,9 +27,10 @@ export default function PatientDashboard() {
         },
       },
       quickActions: [
-        { id: 1, type: "book", label: "Book Appointment" },
-        { id: 2, type: "records", label: "Medical Records" },
-        { id: 3, type: "contact", label: "Contact Doctor" },
+        // 2. Added 'path' to your data so we know where to link
+        { id: 1, type: "book", label: "Book Appointment", path: "/patient/book" },
+        { id: 2, type: "records", label: "Medical Records", path: "/patient/records" },
+        { id: 3, type: "contact", label: "Contact Doctor", path: "/contact" }, 
       ],
       wellnessTip:
         "Drink enough water throughout the day to support recovery.",
@@ -94,7 +96,7 @@ export default function PatientDashboard() {
             </div>
           </div>
 
-          <button className="bg-white text-indigo-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-50">
+          <button className="bg-white text-indigo-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-50 transition">
             View Details
           </button>
         </div>
@@ -108,17 +110,19 @@ export default function PatientDashboard() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {data.quickActions.map((action) => (
-            <div
+            // 3. Changed <div> to <Link> for navigation
+            <Link
+              to={action.path} 
               key={action.id}
-              className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition cursor-pointer"
+              className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition cursor-pointer group"
             >
-              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-3">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-3 group-hover:bg-blue-600 group-hover:text-white transition">
                 {icons[action.type]}
               </div>
               <p className="font-medium text-slate-800">
                 {action.label}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

@@ -7,7 +7,7 @@ import {
   CalendarDaysIcon, 
   ClipboardDocumentCheckIcon 
 } from '@heroicons/react/24/solid';
-import images from '../../assets/image';
+import {images} from '../../assets/image';
 
 const Home = () => {
   return (
