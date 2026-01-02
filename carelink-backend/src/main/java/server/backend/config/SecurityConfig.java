@@ -22,17 +22,11 @@ public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
 
-    /* ===============================
-       PASSWORD ENCODER
-    ================================ */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /* ===============================
-       AUTH MANAGER
-    ================================ */
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration configuration
@@ -40,52 +34,37 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
-    /* ===============================
-       SECURITY FILTER CHAIN
-    ================================ */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                // Disable CSRF (REST API)
                 .csrf(csrf -> csrf.disable())
-
-                // Stateless session (JWT)
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-
-                // Authorization rules
                 .authorizeHttpRequests(auth -> auth
 
-                        /* -------- PUBLIC ENDPOINTS -------- */
-                        .requestMatchers("/api/auth/**", "/api/test/**").permitAll()
-
-                        // Swagger / OpenAPI
+                        /* -------- PUBLIC -------- */
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/test/**").permitAll()   // ✅ FIX
                         .requestMatchers(
-                                "/swagger-ui.html",
                                 "/swagger-ui/**",
+                                "/swagger-ui.html",
                                 "/v3/api-docs/**"
                         ).permitAll()
 
-                        /* -------- HEALTH ARTICLES -------- */
-                        // Anyone can READ articles
+                        /* -------- ARTICLES -------- */
                         .requestMatchers(HttpMethod.GET, "/api/articles/**").permitAll()
-
-                        // Only authenticated users can CREATE / DELETE
                         .requestMatchers(HttpMethod.POST, "/api/articles").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/articles/**").authenticated()
 
-                        /* -------- ROLE-BASED APIs -------- */
+                        /* -------- ROLE BASED -------- */
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/doctor/**").hasRole("DOCTOR")
                         .requestMatchers("/api/patient/**").hasRole("PATIENT")
 
-                        /* -------- EVERYTHING ELSE -------- */
                         .anyRequest().authenticated()
                 )
-
-                // JWT filter
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

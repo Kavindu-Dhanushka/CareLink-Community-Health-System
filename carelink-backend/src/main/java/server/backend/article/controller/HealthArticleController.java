@@ -11,7 +11,7 @@ import server.backend.doctor.entity.Doctor;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/doctor")
+@RequestMapping("/api/articles")   // ✅ FIXED PATH
 @RequiredArgsConstructor
 public class HealthArticleController {
 
@@ -20,7 +20,7 @@ public class HealthArticleController {
     /* ===============================
        CREATE (multipart/form-data)
     ================================ */
-    // localhost:8080/api/doctor
+    // POST http://localhost:8080/api/articles
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public HealthArticleResponseDTO create(
             @ModelAttribute HealthArticleCreateDTO dto
@@ -35,7 +35,7 @@ public class HealthArticleController {
     /* ===============================
        GET ALL
     ================================ */
-    // localhost:8080/api/doctor
+    // GET http://localhost:8080/api/articles
     @GetMapping
     public List<HealthArticleResponseDTO> getAll() {
         return service.getAll();
@@ -44,6 +44,7 @@ public class HealthArticleController {
     /* ===============================
        GET BY ID
     ================================ */
+    // GET http://localhost:8080/api/articles/{id}
     @GetMapping("/{id}")
     public HealthArticleResponseDTO getById(@PathVariable Long id) {
         return service.getById(id);
@@ -52,6 +53,7 @@ public class HealthArticleController {
     /* ===============================
        DELETE
     ================================ */
+    // DELETE http://localhost:8080/api/articles/{id}
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id) {
         service.delete(id);
