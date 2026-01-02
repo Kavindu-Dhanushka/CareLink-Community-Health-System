@@ -33,6 +33,16 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor")
     private List<HealthArticle> articles;
 
+    private String name;
+
+    private String phoneNumber;
+
+    @Column(unique = true)
+    private String email;
+
+    private String ImageUrl;
+
+
     @ManyToMany
     @JoinTable(
             name = "doctor_medical_record",

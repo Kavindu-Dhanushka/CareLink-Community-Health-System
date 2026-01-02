@@ -5,8 +5,13 @@ import jakarta.persistence.*;
 import lombok.*;
 import server.backend.doctor.entity.Doctor;
 
+import jakarta.persistence.*;
+import lombok.*;
+import server.backend.doctor.entity.Doctor;
+
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -24,7 +29,9 @@ public class HealthArticle {
     private String category;
     private String verifiedBy;
 
+    private String imageUrl;
+
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
+    @JoinColumn(name = "doctor_id", nullable = false)
     private Doctor doctor;
 }
