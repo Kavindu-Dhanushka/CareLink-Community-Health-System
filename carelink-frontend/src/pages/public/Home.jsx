@@ -7,7 +7,7 @@ import {
   CalendarDaysIcon, 
   ClipboardDocumentCheckIcon 
 } from '@heroicons/react/24/solid';
-import images from '../../assets/image';
+import {images} from '../../assets/image';
 
 const Home = () => {
   return (
@@ -15,8 +15,8 @@ const Home = () => {
       
       {/* 1. HERO SECTION */}
       <section >
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 mt-14">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-22 items-center">
             
             {/* Text Content */}
             <div className="space-y-3 max-w-2xl ">
@@ -40,25 +40,16 @@ const Home = () => {
               </div>
 
               {/* Trust Badge */}
-              <div className="flex items-center gap-4 pt-6">
-                <div className="flex -space-x-3">
-                  <img className="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=1" alt="User" />
-                  <img className="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=2" alt="User" />
-                  <img className="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=3" alt="User" />
-                </div>
-                <p className="text-sm font-medium text-slate-600">
-                  Trusted by <span className="text-slate-900 font-bold">2,400+</span> residents
-                </p>
-              </div>
+              
             </div>
 
             {/* Hero Image */}
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-green-100 rounded-2xl blur-2xl opacity-50"></div>
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-green-100 rounded-2xl blur-2xl opacity-50 "></div>
               <img 
                 src={images.HomeBanner}
                 alt="Doctor consulting patient" 
-                className="relative rounded-2xl shadow-2xl w-[490px]  object-cover -mt-16 -"
+                className="relative rounded-2xl shadow-2xl w-[495px]  object-cover -mt-12 -"
               />
             </div>
           </div>

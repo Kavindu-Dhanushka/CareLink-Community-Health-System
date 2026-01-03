@@ -1,13 +1,10 @@
 import HomeBanner from './images/Home.jpg';
+import healthCover from './images/pageH.png';
 
 
-const images ={
+export const images = {
 
-    HomeBanner
-
-
-
-
+    HomeBanner,
+    healthCover,
 
 }
-export default images;
